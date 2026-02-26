@@ -3,7 +3,7 @@ import pool from "../db/db.js";
 export async function cancelarReservaService(idReserva) {
   try {
     const reservaACancelar = await pool.query(
-      "SELECT * FROM reservas WHERE id_reserva = $1",
+      "SELECT * FROM reservas WHERE id = $1",
       [idReserva],
     );
 
@@ -18,7 +18,7 @@ export async function cancelarReservaService(idReserva) {
     }
 
     const reservaCancelada = await pool.query(
-      "UPDATE reservas SET estado_reserva = 'Cancelada' WHERE id_reserva = $1 RETURNING *",
+      "UPDATE reservas SET estado_reserva = 'Cancelada' WHERE id = $1 RETURNING *",
       [idReserva],
     );
 

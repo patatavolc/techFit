@@ -1,6 +1,7 @@
 import express from "express";
 import pool from "./db/db.js";
 import mainRouter from "./routes/mainRouter.js";
+import { iniciarJobs } from "./workers/notificaciones.worker.js";
 
 const app = express();
 const PORT = process.env.PORT || 80;
@@ -23,4 +24,5 @@ pool
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
+  iniciarJobs();
 });
